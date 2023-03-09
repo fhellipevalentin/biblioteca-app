@@ -1,0 +1,58 @@
+.example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+  }
+  
+  .example-right-align {
+    text-align: right;
+  }
+  
+  input.example-right-align::-webkit-outer-spin-button,
+  input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  input.example-right-align {
+    -moz-appearance: textfield;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 40vh;
+    width: 70%;
+  }
+  
+  .login-input {
+    width: 100%;
+  }
+
+  .login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+
+    width: 30%;
+  }
+
+  .main-element {
+    background-color: #f1f1f1;
+  }
+
+  .login-title {
+    display: block;
+    justify-content: center;
+  }
+
+  #label-login {
+    font-size: 250%;
+    margin-bottom: 15px;
+  }
+  #button-login {
+    width: 100%;
+  }

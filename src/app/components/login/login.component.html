@@ -1,1 +1,21 @@
-<p>login works!</p>
+
+<div class="main-element">
+    <div class="login-container">
+        <form action="" class="login-form"> 
+            <label id="label-login">Bem vindo!</label>  
+            <mat-form-field appearance="fill" class="login-input">
+                <mat-label>Digite o seu email</mat-label>
+                <input matInput placeholder="email@exemplo.com">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="login-input">
+                <mat-label>Digite a sua senha</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <button mat-raised-button id="button-login">Login</button>
+        </form> 
+    </div>
+</div>
