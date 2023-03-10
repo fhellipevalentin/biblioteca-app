@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from 'src/app/model/user.model';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +12,24 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   hide = true;
+  authStatus: string = "";
+  model = new User();
 
-  constructor() { }
+  constructor( private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  validateUser(loginForm: NgForm) {
+    this.loginService.validateLoginDetails(this.model).subscribe(
+      responseData => {
+        window.sessionStorage.setItem("Authorization",responseData.headers.get('Authorization')!);
+        this.model = <any> responseData.body;
+        this.model.authStatus = 'AUTH';
+        window.sessionStorage.setItem("userdetails",JSON.stringify(this.model));
+        this.router.navigate(['dashboard']);
+      });
+
   }
 
 }

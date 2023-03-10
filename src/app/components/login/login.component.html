@@ -1,21 +1,26 @@
 
 <div class="main-element">
     <div class="login-container">
-        <form action="" class="login-form"> 
+        <form class="login-form" (ngSubmit)="loginForm.valid && validateUser(loginForm)"  #loginForm="ngForm"> 
             <label id="label-login">Bem vindo!</label>  
             <mat-form-field appearance="fill" class="login-input">
                 <mat-label>Digite o seu email</mat-label>
-                <input matInput placeholder="email@exemplo.com">
+                <input name="email" [(ngModel)]="model.email" #email="ngModel" matInput placeholder="email@exemplo.com" required>
                 <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    <span class="text-danger" *ngIf="(email.touched || loginForm.submitted) &&
+                    email.errors?.['pattern']">Error : Please provide a valid email address !</span>
             </mat-form-field>
             <mat-form-field appearance="fill" class="login-input">
                 <mat-label>Digite a sua senha</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'">
+                <input matInput [type]="hide ? 'password' : 'text'" required name="password" 
+                [(ngModel)]="model.password" #password="ngModel">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
+                    <span class="text-danger" *ngIf="(password.touched || loginForm.submitted) &&
+                    password.errors?.['minlength']">Error : Password must be at least 5 characters long. !</span>
             </mat-form-field>
-            <button mat-raised-button id="button-login">Login</button>
+            <button mat-raised-button id="button-login" type="submit">Login</button>
         </form> 
     </div>
 </div>

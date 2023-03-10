@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,6 +15,10 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientXsrfModule } from '@angular/common/http';
+import { XhrInterceptor } from './interceptors/app.request.interceptor';
+import { AuthActivateRouteGuard } from './routeguards/auth.routeguard';
 
 
 @NgModule({
@@ -21,12 +26,16 @@ import { MatInputModule } from '@angular/material/input';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    HttpClientXsrfModule,
      
     MatIconModule,
     MatToolbarModule,
@@ -35,7 +44,13 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : XhrInterceptor,
+      multi : true
+    },AuthActivateRouteGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
