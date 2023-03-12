@@ -19,6 +19,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientXsrfModule } from '@angular/common/http';
 import { XhrInterceptor } from './interceptors/app.request.interceptor';
 import { AuthActivateRouteGuard } from './routeguards/auth.routeguard';
+import { LogoutComponent } from './components/logout/logout.component';
+import { BooksComponent } from './components/books/books.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { AuthActivateRouteGuard } from './routeguards/auth.routeguard';
     LoginComponent,
     HomeComponent,
     ToolbarComponent,
-    DashboardComponent
+    DashboardComponent,
+    LogoutComponent,
+    BooksComponent
   ],
   imports: [
     BrowserModule,
