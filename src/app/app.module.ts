@@ -7,20 +7,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule} from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
+import { LogoutComponent } from './components/logout/logout.component';
+import { BooksComponent } from './components/books/books.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientXsrfModule } from '@angular/common/http';
 import { XhrInterceptor } from './interceptors/app.request.interceptor';
 import { AuthActivateRouteGuard } from './routeguards/auth.routeguard';
-import { LogoutComponent } from './components/logout/logout.component';
-import { BooksComponent } from './components/books/books.component';
+import { BooksService } from './services/books.service';
 
 
 @NgModule({
@@ -40,20 +47,25 @@ import { BooksComponent } from './components/books/books.component';
     FormsModule,
     HttpClientModule,
     HttpClientXsrfModule,
+    ReactiveFormsModule,
      
     MatIconModule,
     MatToolbarModule,
     MatButtonToggleModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule,
+    MatCardModule,
+    MatTabsModule,
+    MatPaginatorModule
   ],
   providers: [
     {
       provide : HTTP_INTERCEPTORS,
       useClass : XhrInterceptor,
       multi : true
-    },AuthActivateRouteGuard
+    }, AuthActivateRouteGuard, BooksService
   ],
   bootstrap: [AppComponent]
 })
