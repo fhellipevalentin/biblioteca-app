@@ -17,7 +17,7 @@
                 </ng-container>
                 <ng-container matColumnDef="author">
                     <th mat-header-cell *matHeaderCellDef>Autor</th>
-                    <td mat-cell *matCellDef="let books">{{ books.author }}</td>
+                    <td mat-cell *matCellDef="let books">{{ books.author.name }}</td>
                 </ng-container>
                 <ng-container matColumnDef="collection">
                     <th mat-header-cell *matHeaderCellDef>Coleção</th>
@@ -29,11 +29,11 @@
                 </ng-container>
                 <ng-container matColumnDef="publicationDate">
                     <th mat-header-cell *matHeaderCellDef>Data de Publicação</th>
-                    <td mat-cell *matCellDef="let books">{{ books.publicationDate }}</td>
+                    <td mat-cell *matCellDef="let books">{{ books.publicationDate | date:'dd/MM/yyyy' }}</td>
                 </ng-container>
                 <ng-container matColumnDef="manufacturingDate">
                     <th mat-header-cell *matHeaderCellDef>Data de Fabricação</th>
-                    <td mat-cell *matCellDef="let books">{{ books.manufacturingDate }}</td>
+                    <td mat-cell *matCellDef="let books">{{ books.manufacturingDate | date:'dd/MM/yyyy' }}</td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="columns"></tr>
                     <tr mat-row *matRowDef="let row; columns: columns;"></tr>

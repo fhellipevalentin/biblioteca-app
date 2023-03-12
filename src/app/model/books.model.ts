@@ -18,6 +18,9 @@ export class Book {
         this.author = author;
     }
 
+    toString() {
+        return `${this.author}`;
+      }
 
 
 }
