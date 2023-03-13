@@ -41,4 +41,13 @@ export class BooksService {
       catchError(this.errorHandle.appError)
     )
   }
+
+  insertBook(newData: any): Observable<Book> {
+    return this.http.post<Book>(`${this.URLbase}/api/book/add`, JSON.stringify(newData))
+    .pipe(
+      retry(1),
+      catchError(this.errorHandle.appError)
+    )
+  }
+
 }
