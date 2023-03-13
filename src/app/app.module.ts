@@ -20,6 +20,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 import { LogoutComponent } from './components/logout/logout.component';
 import { BooksComponent } from './components/books/books.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -58,7 +60,9 @@ import { BooksService } from './services/books.service';
     MatTableModule,
     MatCardModule,
     MatTabsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+
+    Ng2SearchPipeModule
   ],
   providers: [
     {

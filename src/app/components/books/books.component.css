@@ -4,3 +4,9 @@
 .half-width {
     width: 50%;
 }
+
+.btn {
+    position: fixed;
+    top: 140px;
+    right: 20px;
+}
