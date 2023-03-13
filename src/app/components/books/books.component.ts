@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { Book } from 'src/app/model/books.model';
+import { User } from 'src/app/model/user.model';
 import { BooksService } from 'src/app/services/books.service';
 import { DeleteBookComponent } from '../system-dialogs/delete-book/delete-book.component';
 
@@ -13,6 +14,7 @@ import { DeleteBookComponent } from '../system-dialogs/delete-book/delete-book.c
 })
 export class BooksComponent implements OnInit {
 
+  user = new User();
   formulary!: FormGroup;
   booksList: Book[] = [];
   columns: string[] = [ 'id', 'title', 'author', 'collection', 'quantity', 'publicationDate', 'manufacturingDate', 'options']

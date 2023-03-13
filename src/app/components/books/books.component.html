@@ -11,7 +11,7 @@
                 <input matInput id="search-text" aria-describedby="search-text" 
                 [(ngModel)]="searchText" placeholder=""  autofocus/>
             </mat-form-field>
-            <button mat-stroked-button class="btn" >Cadastro</button>
+            <button mat-stroked-button class="btn" *ngIf="user.authStatus!='AUTH'" routerLinkActive="active" routerLink="/books-add" >Cadastro</button>
             <table mat-table [dataSource]="booksList | filter:searchText" class="full-width">
                 <ng-container matColumnDef="id">
                     <th mat-header-cell *matHeaderCellDef>Id</th>
@@ -52,12 +52,11 @@
                 <tr mat-header-row *matHeaderRowDef="columns"></tr>
                     <tr mat-row *matRowDef="let row; columns: columns;"></tr>
             </table>
-            
             <mat-paginator  [length]="totalElementos"
                             [pageSize]="tamanho"
                             [pageSizeOptions]="pageSizeOptions" 
                             (page)="paginar($event)">
-    </mat-paginator>
+            </mat-paginator>
         </mat-card>
     </mat-tab>
 </mat-tab-group>
