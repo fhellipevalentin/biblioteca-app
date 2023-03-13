@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Deletar Livro</h1>
+<div mat-dialog-content>
+  Você gostaria de deletar este Livro: {{ book.title }} ?
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="close()">Não</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="deleteData(book.id)">Sim</button>
+</div>

@@ -19,6 +19,8 @@ import { MatTableModule} from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
@@ -30,6 +32,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientXsrfModule } from '@angu
 import { XhrInterceptor } from './interceptors/app.request.interceptor';
 import { AuthActivateRouteGuard } from './routeguards/auth.routeguard';
 import { BooksService } from './services/books.service';
+import { DeleteBookComponent } from './components/system-dialogs/delete-book/delete-book.component';
 
 
 @NgModule({
@@ -40,7 +43,8 @@ import { BooksService } from './services/books.service';
     ToolbarComponent,
     DashboardComponent,
     LogoutComponent,
-    BooksComponent
+    BooksComponent,
+    DeleteBookComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +65,8 @@ import { BooksService } from './services/books.service';
     MatCardModule,
     MatTabsModule,
     MatPaginatorModule,
+    MatDialogModule,
+    MatSnackBarModule,
 
     Ng2SearchPipeModule
   ],
