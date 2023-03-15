@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 import { Author } from 'src/app/model/author.model';
 import { Book } from 'src/app/model/books.model';
 import { AuthorService } from 'src/app/services/author.service';
@@ -13,29 +14,29 @@ import { BooksService } from 'src/app/services/books.service';
 })
 export class BooksAddComponent implements OnInit {
 
-  
-  formulary!: FormGroup;
+  public formulary: FormGroup = this.formBuilder.group({});
   booksList: Book[] = [];
   authorList: any = []
-  columns: string[] = [ 'id', 'title', 'author', 'collection', 'quantity', 'publicationDate', 'manufacturingDate', 'options']
+  columns: string[] = [ 'id', 'title', 'authorId', 'collection', 'quantity', 'publicationDate', 'manufacturingDate', 'options']
   
   constructor( private bookService: BooksService, private authorService: AuthorService, private formBuilder: FormBuilder, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.showData();
     this.formulary = this.formBuilder.group( {
-      id: new FormControl('', Validators.required),
       title: new FormControl('', Validators.required),
       collection: new FormControl('', Validators.required),
       quantity: new FormControl('', Validators.required),
       publicationDate: new FormControl('', Validators.required),
       manufacturingDate: new FormControl('', Validators.required),
-      author: new FormControl('', Validators.required)
-    })
+      author: this.formBuilder.group({
+        id: [null, Validators.required],
+        name: ['']
+      })
+      })
   }
-  submit() {
-    const formValues = this.formulary.value 
-    const books: Book = new Book(formValues.id, formValues.title, formValues.collection, formValues.quantity, formValues.publicationDate, formValues.manufacturingDate, formValues.author);
+  submit() { 
+    const books: Book = this.formulary.value;
     this.bookService.insertBook(books).subscribe(response => {
       let list: Book[] = [...this.booksList, response]
         this.booksList = list

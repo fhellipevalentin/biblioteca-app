@@ -10,7 +10,7 @@ import { Errors } from '../errors/Errors';
   providedIn: 'root'
 })
 export class BooksService {
-
+  
   URLbase : string = environment.rooturl;
   private errorHandle : Errors = new Errors();
 
@@ -43,7 +43,7 @@ export class BooksService {
   }
 
   insertBook(newData: any): Observable<Book> {
-    return this.http.post<Book>(`${this.URLbase}/api/book/add`, JSON.stringify(newData))
+    return this.http.post<Book>(`${this.URLbase}/api/book/add`, newData)
     .pipe(
       retry(1),
       catchError(this.errorHandle.appError)

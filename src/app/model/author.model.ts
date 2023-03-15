@@ -1,10 +1,5 @@
-export class Author {
+export interface Author {
 
-    id!: number;
+    id: number;
     name : string;
-
-    constructor ( id: number, name: string) {
-        this.id = id;
-        this.name = name;
-    }
 }
