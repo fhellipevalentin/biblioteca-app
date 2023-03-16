@@ -25,7 +25,6 @@ export class BooksComponent implements OnInit {
   ordem = "title";
   direcao = "ASC";
   pageSizeOptions: number[] = [5];
-  searchText = '';
 
   constructor( private bookService: BooksService, private formBuilder: FormBuilder, public dialog: MatDialog) { }
 

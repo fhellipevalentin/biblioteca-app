@@ -1,4 +1,5 @@
 import { Author } from "./author.model";
+import { Genre } from "./genres.model";
 
 export interface Book {
 
@@ -9,6 +10,6 @@ export interface Book {
     publicationDate : Date;
     manufacturingDate : Date;
     author: Author;
-
+    genres: Genre[];
 
 }
