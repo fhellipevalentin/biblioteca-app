@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { PageEvent } from '@angular/material/paginator';
+import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
 import { Book } from 'src/app/model/books.model';
 import { User } from 'src/app/model/user.model';
 import { BooksService } from 'src/app/services/books.service';

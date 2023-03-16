@@ -44,12 +44,6 @@ export class BooksAddComponent implements OnInit {
       })
       
   }
-
-  const book: Book = {
-    title: this.formulary.controls['title'].value,
-    author: this.formulary.controls['author'].value,
-    genres: this.formulary.controls['genres'].value,
-  };
   
   submit() { 
     const books: Book = this.formulary.value;
