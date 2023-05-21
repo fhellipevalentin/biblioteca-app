@@ -43,12 +43,19 @@
                     <mat-label>Data de Fabricação: </mat-label>
                     <input formControlName="manufacturingDate" matInput placeholder="Data de Fabricação">
                 </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Gêneros</mat-label>
-                    <mat-select [formControl]="formulary.controls['genres']" multiple>
-                      <mat-option *ngFor="let genre of genres" [value]="genre">{{ genre.name }}</mat-option>
-                    </mat-select>
-                  </mat-form-field>
+                <button mat-raised-button type="button" (click)="addGenre()">Adicionar gênero</button>
+                <div formArrayName="genres">
+                    <div *ngFor="let genreForm of genres.controls; let i=index" [formGroupName]="i">
+                        <mat-form-field>
+                            <mat-label>Gênero</mat-label>
+                            <mat-select [formControl]="genreControl">
+                              <mat-option *ngFor="let genre of genreList" [value]="genre.id">
+                                {{genre.name}}
+                              </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
                 <button mat-raised-button color="primary">Registrar</button>
             </form>
         </mat-card>

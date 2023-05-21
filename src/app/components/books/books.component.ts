@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
-import { LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { Book } from 'src/app/model/books.model';
 import { User } from 'src/app/model/user.model';
 import { BooksService } from 'src/app/services/books.service';
@@ -25,6 +25,7 @@ export class BooksComponent implements OnInit {
   ordem = "title";
   direcao = "ASC";
   pageSizeOptions: number[] = [5];
+  searchText = '';
 
   constructor( private bookService: BooksService, private formBuilder: FormBuilder, public dialog: MatDialog) { }
 

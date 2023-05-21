@@ -15,8 +15,8 @@ export class AuthorService {
 
   constructor( private http: HttpClient) { }
 
-  listDataAuthors(): Observable<Author> {
-    return this.http.get<Author>(`${this.URLBase}/api/authors/all`)
+  listDataAuthors()  {
+    return this.http.get<Author[]>(`${this.URLBase}/api/authors/all`)
     .pipe (
       retry(1),
       catchError(this.errorHandle.appError)

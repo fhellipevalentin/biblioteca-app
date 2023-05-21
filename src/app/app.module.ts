@@ -22,10 +22,15 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-
 import { MatCheckboxModule } from '@angular/material/checkbox';
+
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
+import {MatChipsModule} from '@angular/material/chips';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { LogoutComponent } from './components/logout/logout.component';
 import { BooksComponent } from './components/books/books.component';
@@ -37,8 +42,6 @@ import { AuthActivateRouteGuard } from './routeguards/auth.routeguard';
 import { BooksService } from './services/books.service';
 import { DeleteBookComponent } from './components/system-dialogs/delete-book/delete-book.component';
 import { BooksAddComponent } from './components/books-add/books-add.component';
-import { AuthorService } from './services/author.service';
-import { GenreService } from './services/genre.service';
 
 
 @NgModule({
@@ -61,8 +64,10 @@ import { GenreService } from './services/genre.service';
     HttpClientModule,
     HttpClientXsrfModule,
     ReactiveFormsModule,
-    FormControl,
-    
+
+    MatChipsModule,
+    MatAutocompleteModule,
+     
     MatIconModule,
     MatToolbarModule,
     MatButtonToggleModule,
@@ -75,17 +80,19 @@ import { GenreService } from './services/genre.service';
     MatPaginatorModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
     
+    Ng2SearchPipeModule
   ],
   providers: [
     {
       provide : HTTP_INTERCEPTORS,
       useClass : XhrInterceptor,
       multi : true
-    }, AuthActivateRouteGuard, BooksService, GenreService, AuthorService
+    }, AuthActivateRouteGuard, BooksService
   ],
   bootstrap: [AppComponent]
 })
