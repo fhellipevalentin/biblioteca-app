@@ -67,7 +67,7 @@ import { BooksAddComponent } from './components/books-add/books-add.component';
 
     MatChipsModule,
     MatAutocompleteModule,
-     
+
     MatIconModule,
     MatToolbarModule,
     MatButtonToggleModule,
@@ -84,7 +84,7 @@ import { BooksAddComponent } from './components/books-add/books-add.component';
     MatNativeDateModule,
     MatSelectModule,
     MatCheckboxModule,
-    
+
     Ng2SearchPipeModule
   ],
   providers: [

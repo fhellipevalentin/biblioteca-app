@@ -6,6 +6,8 @@ import { Book } from 'src/app/model/books.model';
 import { User } from 'src/app/model/user.model';
 import { BooksService } from 'src/app/services/books.service';
 import { DeleteBookComponent } from '../system-dialogs/delete-book/delete-book.component';
+import { AuthorService } from '../../services/author.service';
+import { Author } from 'src/app/model/author.model';
 
 @Component({
   selector: 'app-books',
@@ -61,5 +63,4 @@ export class BooksComponent implements OnInit {
       data: book,
     });
   }
-
 }

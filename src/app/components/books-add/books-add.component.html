@@ -30,7 +30,7 @@
                     </div>
                 <mat-form-field class="half-width" appearance="fill">
                     <mat-label>Quantidade Disponível: </mat-label>
-                    <input formControlName="quantity" matInput placeholder="Quantidade">     
+                    <input formControlName="quantity" matInput placeholder="Quantidade">
                     <div *ngIf="formulary.get('quantity')?.errors">
                         <div *ngIf="formulary.get('quantity')?.errors?.['required'] && !formulary.get('quantity')?.pristine">*Campo Quantidade é <strong>obrigatório</strong></div>
                     </div>
@@ -45,10 +45,14 @@
                 </mat-form-field>
                 <button mat-raised-button type="button" (click)="addGenre()">Adicionar gênero</button>
                 <div formArrayName="genres">
-                    <div *ngFor="let genreForm of genres.controls; let i=index" [formGroupName]="i">
+                    <div *ngFor="let genreForm of genresFormArray.controls; let i=index" [formGroupName]="i">
                         <mat-form-field>
+                          <span class="delete" (click)="deleteGenre(i)">
+                            <mat-icon>delete</mat-icon>
+                          </span>
                             <mat-label>Gênero</mat-label>
-                            <mat-select [formControl]="genreControl">
+                            <mat-select formControlName="id">
+                              <mat-option>None</mat-option>
                               <mat-option *ngFor="let genre of genreList" [value]="genre.id">
                                 {{genre.name}}
                               </mat-option>
