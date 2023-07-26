@@ -10,11 +10,11 @@ import { Errors } from '../errors/Errors';
   providedIn: 'root'
 })
 export class BooksService {
-  
+
   URLbase : string = environment.rooturl;
   private errorHandle : Errors = new Errors();
 
-  constructor( private http: HttpClient) { 
+  constructor( private http: HttpClient) {
   }
 
   authorizationAccess = {

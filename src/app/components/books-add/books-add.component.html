@@ -35,14 +35,7 @@
                         <div *ngIf="formulary.get('quantity')?.errors?.['required'] && !formulary.get('quantity')?.pristine">*Campo Quantidade é <strong>obrigatório</strong></div>
                     </div>
                 </mat-form-field>
-                <mat-form-field class="half-width" appearance="fill">
-                    <mat-label>Data de Publicação: </mat-label>
-                    <input formControlName="publicationDate" matInput placeholder="Data de Publicação">
-                </mat-form-field>
-                <mat-form-field class="half-width" appearance="fill">
-                    <mat-label>Data de Fabricação: </mat-label>
-                    <input formControlName="manufacturingDate" matInput placeholder="Data de Fabricação">
-                </mat-form-field>
+
                 <button mat-raised-button type="button" (click)="addGenre()">Adicionar gênero</button>
                 <div formArrayName="genres">
                     <div *ngFor="let genreForm of genresFormArray.controls; let i=index" [formGroupName]="i">

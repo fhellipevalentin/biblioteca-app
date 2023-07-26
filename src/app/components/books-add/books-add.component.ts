@@ -6,6 +6,7 @@ import { BooksService } from 'src/app/services/books.service';
 import { GenreService } from 'src/app/services/genre.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Genre } from 'src/app/model/genres.model';
+import { Book } from 'src/app/model/books.model';
 
 @Component({
   selector: 'app-books-add',
@@ -37,30 +38,23 @@ export class BooksAddComponent implements OnInit {
 
   buildForm() {
     return this.formBuilder.group({
+      id: [''],
       title: ['', Validators.required],
       collection: ['', Validators.required],
       quantity: ['', Validators.required],
-      publicationDate: ['', Validators.required],
-      manufacturingDate: ['', Validators.required],
+      publicationDate: [new Date(), Validators.required],
+      manufacturingDate: [new Date(), Validators.required],
       author: this.formBuilder.group({
         id: ['', Validators.required],
-        name: ['', Validators.required],
       }),
       genres: this.formBuilder.array<Genre>([]),
       })
   }
 
-  buildFormGroupGender() {
-    const genreForm = this.formBuilder.group({
-      id: [this.genreControl.value, Validators.required],
-      name: ['', Validators.required]
-    });
-
-  }
-
   submit() {
-    const dados = JSON.stringify(this.formulary.value);
-    console.log(this.formulary.value);
+    this.bookService.insertBook(this.formulary.value).subscribe(data => {
+        console.log(data)
+    })
   }
 
   showData() {

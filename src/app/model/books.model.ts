@@ -5,7 +5,7 @@ export interface Book {
 
     id: number;
     title : string;
-    collection : any;
+    collection : string;
     quantity : number;
     publicationDate : Date;
     manufacturingDate : Date;
