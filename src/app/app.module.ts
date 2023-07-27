@@ -41,7 +41,7 @@ import { XhrInterceptor } from './interceptors/app.request.interceptor';
 import { AuthActivateRouteGuard } from './routeguards/auth.routeguard';
 import { BooksService } from './services/books.service';
 import { DeleteBookComponent } from './components/system-dialogs/delete-book/delete-book.component';
-import { BooksAddComponent } from './components/books-add/books-add.component';
+import { AddBookComponent } from './components/system-dialogs/add-book/add-book.component';
 
 
 @NgModule({
@@ -54,7 +54,7 @@ import { BooksAddComponent } from './components/books-add/books-add.component';
     LogoutComponent,
     BooksComponent,
     DeleteBookComponent,
-    BooksAddComponent
+    AddBookComponent
   ],
   imports: [
     BrowserModule,

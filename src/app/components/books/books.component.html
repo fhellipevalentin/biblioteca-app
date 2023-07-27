@@ -11,7 +11,7 @@
                 <input matInput id="search-text" aria-describedby="search-text"
                 [(ngModel)]="searchText" placeholder=""  autofocus/>
             </mat-form-field>
-            <button mat-stroked-button class="btn" *ngIf="user.authStatus!='AUTH'" routerLinkActive="active" routerLink="/books-add" >Cadastro</button>
+            <button mat-stroked-button class="btn" *ngIf="user.authStatus!='AUTH'" routerLinkActive="active" (click)="openDialogAddEmployee()" >Cadastro</button>
             <table mat-table [dataSource]="booksList | filter:searchText" class="full-width">
                 <ng-container matColumnDef="id">
                     <th mat-header-cell *matHeaderCellDef>Id</th>

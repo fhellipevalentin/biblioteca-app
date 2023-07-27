@@ -1,0 +1,79 @@
+<mat-tab-group>
+    <mat-tab>
+        <ng-template mat-tab-label="">
+            <mat-icon>add</mat-icon>
+            Registrar um Livro
+        </ng-template>
+        <mat-card>
+            <form [formGroup]="formulary" (ngSubmit)="submit()">
+                <mat-form-field formGroupName="author"  appearance="fill">
+                    <mat-label>Autor: </mat-label>
+                    <mat-select formControlName="id">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let author of authorList" [value]="author.id">{{ author.name }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field  appearance="fill">
+                    <mat-label>Titulo: </mat-label>
+                    <input formControlName="title" matInput placeholder="Titulo do Livro">
+                    <div *ngIf="formulary.get('title')?.errors">
+                        <div *ngIf="formulary.get('title')?.errors?.['required'] && !formulary.get('title')?.pristine">*Campo Titulo é <strong>obrigatório</strong></div>
+                    </div>
+                </mat-form-field>
+                <mat-form-field  appearance="fill">
+                    <mat-label>Coleção: </mat-label>
+                    <input formControlName="collection" matInput placeholder="Coleção">
+                </mat-form-field>
+                    <div *ngIf="formulary.get('collection')?.errors">
+                        <div *ngIf="formulary.get('collection')?.errors?.['required'] && !formulary.get('collection')?.pristine">*Campo Coleção é <strong>obrigatório</strong></div>
+                    </div>
+                <mat-form-field  appearance="fill">
+                    <mat-label>Quantidade Disponível: </mat-label>
+                    <input formControlName="quantity" matInput placeholder="Quantidade">
+                    <div *ngIf="formulary.get('quantity')?.errors">
+                        <div *ngIf="formulary.get('quantity')?.errors?.['required'] && !formulary.get('quantity')?.pristine">*Campo Quantidade é <strong>obrigatório</strong></div>
+                    </div>
+                </mat-form-field>
+                <mat-form-field  appearance="fill">
+                    <mat-label>Data de Publicação: </mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="publicationDate">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker" >
+                          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                        </mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label>Data de Fabricação: </mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="manufacturingDate">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker" >
+                          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                        </mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <div>
+                  <button mat-raised-button type="button" (click)="addGenre()">Adicionar gênero</button>
+                </div>
+                  <div formArrayName="genres">
+                      <div *ngFor="let genreForm of genresFormArray.controls; let i=index" [formGroupName]="i">
+                          <mat-form-field appearance="fill">
+                              <mat-label>Gênero</mat-label>
+                              <mat-select formControlName="id">
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let genre of genreList" [value]="genre.id">
+                                  {{genre.name}}
+                                </mat-option>
+                              </mat-select>
+                              <span class="delete" (click)="deleteGenre(i)">
+                                <mat-icon class="delete">delete</mat-icon>
+                              </span>
+                          </mat-form-field>
+                      </div>
+                  </div>
+                <button mat-raised-button color="primary">Registrar</button>
+                <button mat-raised-button color="primary" (click)="close()">Voltar</button>
+            </form>
+        </mat-card>
+    </mat-tab>
+</mat-tab-group>

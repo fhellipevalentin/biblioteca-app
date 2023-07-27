@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BooksAddComponent } from './components/books-add/books-add.component';
 import { BooksComponent } from './components/books/books.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
@@ -16,8 +15,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthActivateRouteGuard]},
   {path: 'logout', component: LogoutComponent, canActivate: [AuthActivateRouteGuard]},
-  {path: 'books', component: BooksComponent, canActivate: [AuthActivateRouteGuard]},
-  {path: 'books-add', component: BooksAddComponent, canActivate: [AuthActivateRouteGuard]}
+  {path: 'books', component: BooksComponent, canActivate: [AuthActivateRouteGuard]}
 ]
 
 @NgModule({

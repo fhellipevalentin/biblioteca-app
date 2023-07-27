@@ -1,19 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Book } from 'src/app/model/books.model';
+import { Genre } from 'src/app/model/genres.model';
 import { AuthorService } from 'src/app/services/author.service';
 import { BooksService } from 'src/app/services/books.service';
 import { GenreService } from 'src/app/services/genre.service';
-import { MatDialog } from '@angular/material/dialog';
-import { Genre } from 'src/app/model/genres.model';
-import { Book } from 'src/app/model/books.model';
 
 @Component({
-  selector: 'app-books-add',
-  templateUrl: './books-add.component.html',
-  styleUrls: ['./books-add.component.css']
+  selector: 'app-add-book',
+  templateUrl: './add-book.component.html',
+  styleUrls: ['./add-book.component.css']
 })
-export class BooksAddComponent implements OnInit {
+export class AddBookComponent implements OnInit {
 
   public formulary = this.buildForm()
   authorList: any = []
@@ -26,8 +25,11 @@ export class BooksAddComponent implements OnInit {
     private bookService: BooksService,
     private authorService: AuthorService,
     private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar,
-    private genreService: GenreService, public dialog: MatDialog) { }
+    private genreService: GenreService,
+    public dialog: MatDialog,
+    public dialogRef:MatDialogRef<AddBookComponent>,
+    @Inject(MAT_DIALOG_DATA) public book:Book
+    ) { }
 
 
   ngOnInit(): void {
@@ -82,6 +84,10 @@ export class BooksAddComponent implements OnInit {
 
   deleteGenre(genreIndex: number) {
     this.genresFormArray.removeAt(genreIndex);
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 
 }

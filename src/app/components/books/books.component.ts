@@ -8,6 +8,7 @@ import { BooksService } from 'src/app/services/books.service';
 import { DeleteBookComponent } from '../system-dialogs/delete-book/delete-book.component';
 import { AuthorService } from '../../services/author.service';
 import { Author } from 'src/app/model/author.model';
+import { AddBookComponent } from '../system-dialogs/add-book/add-book.component';
 
 @Component({
   selector: 'app-books',
@@ -61,6 +62,13 @@ export class BooksComponent implements OnInit {
     this.dialog.open(DeleteBookComponent, {
       width: '300px',
       data: book,
+    });
+  }
+
+  openDialogAddEmployee() {
+    this.dialog.open(AddBookComponent, {
+      width: '800px',
+      height: '600px'
     });
   }
 }
