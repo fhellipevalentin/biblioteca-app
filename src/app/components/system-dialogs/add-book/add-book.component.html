@@ -6,13 +6,6 @@
         </ng-template>
         <mat-card>
             <form [formGroup]="formulary" (ngSubmit)="submit()">
-                <mat-form-field formGroupName="author"  appearance="fill">
-                    <mat-label>Autor: </mat-label>
-                    <mat-select formControlName="id">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let author of authorList" [value]="author.id">{{ author.name }}</mat-option>
-                    </mat-select>
-                </mat-form-field>
                 <mat-form-field  appearance="fill">
                     <mat-label>Titulo: </mat-label>
                     <input formControlName="title" matInput placeholder="Titulo do Livro">
@@ -36,14 +29,14 @@
                 </mat-form-field>
                 <mat-form-field  appearance="fill">
                     <mat-label>Data de Publicação: </mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="publicationDate">
+                    <input matInput [matDatepicker]="picker1" formControlName="publicationDate">
                         <mat-hint>MM/DD/YYYY</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="picker" >
+                        <mat-datepicker-toggle matIconSuffix [for]="picker1" >
                           <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                         </mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>
-                <mat-form-field appearance="fill" class="example-full-width">
+                <mat-form-field appearance="fill">
                     <mat-label>Data de Fabricação: </mat-label>
                     <input matInput [matDatepicker]="picker" formControlName="manufacturingDate">
                         <mat-hint>MM/DD/YYYY</mat-hint>
@@ -53,24 +46,43 @@
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
                 <div>
-                  <button mat-raised-button type="button" (click)="addGenre()">Adicionar gênero</button>
+                  <button mat-raised-button type="button" (click)="addGenre()">Adicionar Gêneros</button>
                 </div>
                   <div formArrayName="genres">
-                      <div *ngFor="let genreForm of genresFormArray.controls; let i=index" [formGroupName]="i">
-                          <mat-form-field appearance="fill">
-                              <mat-label>Gênero</mat-label>
-                              <mat-select formControlName="id">
-                                <mat-option>None</mat-option>
-                                <mat-option *ngFor="let genre of genreList" [value]="genre.id">
-                                  {{genre.name}}
-                                </mat-option>
-                              </mat-select>
-                              <span class="delete" (click)="deleteGenre(i)">
-                                <mat-icon class="delete">delete</mat-icon>
-                              </span>
-                          </mat-form-field>
-                      </div>
+                    <div *ngFor="let genreForm of genresFormArray.controls; let i=index" [formGroupName]="i">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Gênero</mat-label>
+                            <mat-select formControlName="id">
+                              <mat-option>None</mat-option>
+                              <mat-option *ngFor="let genre of genreList" [value]="genre.id">
+                                {{genre.name}}
+                              </mat-option>
+                            </mat-select>
+                            <span (click)="deleteGenre(i)"  class="delete">
+                              <mat-icon>delete</mat-icon>
+                            </span>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div>
+                  <button mat-raised-button type="button" (click)="addAuthor()">Adicionar Autores</button>
+                </div>
+                <div formArrayName="authors">
+                  <div *ngFor="let authorForm of authorsFormArray.controls; let i=index" [formGroupName]="i">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Autores</mat-label>
+                      <mat-select formControlName="id">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let author of authorList" [value]="author.id">
+                          {{author.name}}
+                        </mat-option>
+                      </mat-select>
+                      <span (click)="deleteAuthor(i)" class="delete">
+                        <mat-icon>delete</mat-icon>
+                      </span>
+                    </mat-form-field>
                   </div>
+                </div>
                 <button mat-raised-button color="primary">Registrar</button>
                 <button mat-raised-button color="primary" (click)="close()">Voltar</button>
             </form>

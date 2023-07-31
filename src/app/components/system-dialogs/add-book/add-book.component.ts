@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Author } from 'src/app/model/author.model';
 import { Book } from 'src/app/model/books.model';
 import { Genre } from 'src/app/model/genres.model';
 import { AuthorService } from 'src/app/services/author.service';
@@ -18,6 +19,7 @@ export class AddBookComponent implements OnInit {
   authorList: any = []
   genreList: any = []
   genreControl: FormControl = new FormControl('');
+  authorControl: FormControl = new FormControl('');
 
   columns: string[] = [ 'id', 'title', 'author', 'collection', 'quantity', 'publicationDate', 'manufacturingDate', 'genres', 'options']
 
@@ -34,8 +36,7 @@ export class AddBookComponent implements OnInit {
 
   ngOnInit(): void {
     this.showData()
-    //this.formulary.valueChanges.subscribe(res => console.log(res))
-    this.genresFormArray.valueChanges.subscribe(console.log)
+    this.formulary.valueChanges.subscribe(res => console.log(res))
   }
 
   buildForm() {
@@ -44,11 +45,9 @@ export class AddBookComponent implements OnInit {
       title: ['', Validators.required],
       collection: ['', Validators.required],
       quantity: ['', Validators.required],
-      publicationDate: [new Date(), Validators.required],
-      manufacturingDate: [new Date(), Validators.required],
-      author: this.formBuilder.group({
-        id: ['', Validators.required],
-      }),
+      publicationDate: ['', Validators.required],
+      manufacturingDate: ['', Validators.required],
+      authors: this.formBuilder.array<Author>([]),
       genres: this.formBuilder.array<Genre>([]),
       })
   }
@@ -68,6 +67,22 @@ export class AddBookComponent implements OnInit {
       this.genreList = data
       console.log(data)
     })
+  }
+
+  get authorsFormArray() {
+    return this.formulary.controls["authors"] as FormArray;
+  }
+
+  addAuthor() {
+    const authorForm = this.formBuilder.group({
+      id: [this.authorControl.value, Validators.required],
+      name: ['', Validators.required]
+    });
+    this.authorsFormArray.push(authorForm)
+  }
+
+  deleteAuthor(authorIndex: number) {
+    this.authorsFormArray.removeAt(authorIndex)
   }
 
   get genresFormArray() {

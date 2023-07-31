@@ -9,7 +9,7 @@ export interface Book {
     quantity : number;
     publicationDate : Date;
     manufacturingDate : Date;
-    author: Author;
+    author: Author[];
     genres: Genre[];
 
 }

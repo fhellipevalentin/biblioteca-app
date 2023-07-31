@@ -22,8 +22,8 @@
                     <td mat-cell *matCellDef="let books">{{ books.title }}</td>
                 </ng-container>
                 <ng-container matColumnDef="author">
-                    <th mat-header-cell *matHeaderCellDef>Autor</th>
-                    <td mat-cell *matCellDef="let books">{{ books.author?.name }}</td>
+                    <th mat-header-cell *matHeaderCellDef>Autor Principal:</th>
+                    <td mat-cell *matCellDef="let books">{{ books.authors?.[0]?.name }}</td>
                 </ng-container>
                 <ng-container matColumnDef="collection">
                     <th mat-header-cell *matHeaderCellDef>Coleção</th>

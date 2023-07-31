@@ -1,0 +1,7 @@
+.delete {
+  position: absolute;
+  right: -40px; /* Ajuste esse valor para posicionar corretamente o ícone */
+  top: 20%; /* Ajuste esse valor para posicionar corretamente o ícone verticalmente */
+  transform: translateY(-50%);
+  cursor: pointer;
+}
