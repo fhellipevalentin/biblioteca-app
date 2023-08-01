@@ -67,8 +67,8 @@ export class BooksComponent implements OnInit {
 
   openDialogAddEmployee() {
     this.dialog.open(AddBookComponent, {
-      width: '800px',
-      height: '600px'
+      width: '485px',
+      height: '800px'
     });
   }
 }

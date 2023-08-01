@@ -5,3 +5,21 @@
   transform: translateY(-50%);
   cursor: pointer;
 }
+
+.arrow {
+  position: absolute;
+  right: -10px; /* Ajuste esse valor para posicionar corretamente o ícone */
+  top: 20%; /* Ajuste esse valor para posicionar corretamente o ícone verticalmente */
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.add {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.bottom-buttons{
+  margin: auto;
+  width: 40%;
+}
+

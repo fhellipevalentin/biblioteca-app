@@ -5,33 +5,34 @@
             Registrar um Livro
         </ng-template>
         <mat-card>
-            <form [formGroup]="formulary" (ngSubmit)="submit()">
+            <form [formGroup]="formulary" (ngSubmit)="submit()" class="form">
                 <mat-form-field  appearance="fill">
                     <mat-label>Titulo: </mat-label>
-                    <input formControlName="title" matInput placeholder="Titulo do Livro">
+                    <input formControlName="title" matInput>
                     <div *ngIf="formulary.get('title')?.errors">
                         <div *ngIf="formulary.get('title')?.errors?.['required'] && !formulary.get('title')?.pristine">*Campo Titulo é <strong>obrigatório</strong></div>
                     </div>
                 </mat-form-field>
                 <mat-form-field  appearance="fill">
                     <mat-label>Coleção: </mat-label>
-                    <input formControlName="collection" matInput placeholder="Coleção">
+                    <input formControlName="collection" matInput>
                 </mat-form-field>
                     <div *ngIf="formulary.get('collection')?.errors">
                         <div *ngIf="formulary.get('collection')?.errors?.['required'] && !formulary.get('collection')?.pristine">*Campo Coleção é <strong>obrigatório</strong></div>
                     </div>
                 <mat-form-field  appearance="fill">
-                    <mat-label>Quantidade Disponível: </mat-label>
-                    <input formControlName="quantity" matInput placeholder="Quantidade">
+                    <mat-label>Quantidade: </mat-label>
+                    <input formControlName="quantity" matInput>
                     <div *ngIf="formulary.get('quantity')?.errors">
                         <div *ngIf="formulary.get('quantity')?.errors?.['required'] && !formulary.get('quantity')?.pristine">*Campo Quantidade é <strong>obrigatório</strong></div>
                     </div>
                 </mat-form-field>
+                <br>
                 <mat-form-field  appearance="fill">
                     <mat-label>Data de Publicação: </mat-label>
                     <input matInput [matDatepicker]="picker1" formControlName="publicationDate">
                         <mat-hint>MM/DD/YYYY</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="picker1" >
+                        <mat-datepicker-toggle matIconSuffix [for]="picker1" class="arrow">
                           <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                         </mat-datepicker-toggle>
                     <mat-datepicker #picker1></mat-datepicker>
@@ -40,12 +41,12 @@
                     <mat-label>Data de Fabricação: </mat-label>
                     <input matInput [matDatepicker]="picker" formControlName="manufacturingDate">
                         <mat-hint>MM/DD/YYYY</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="picker" >
+                        <mat-datepicker-toggle matIconSuffix [for]="picker" class="arrow">
                           <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                         </mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
-                <div>
+                <div class="add">
                   <button mat-raised-button type="button" (click)="addGenre()">Adicionar Gêneros</button>
                 </div>
                   <div formArrayName="genres">
@@ -64,7 +65,7 @@
                         </mat-form-field>
                     </div>
                 </div>
-                <div>
+                <div class="add">
                   <button mat-raised-button type="button" (click)="addAuthor()">Adicionar Autores</button>
                 </div>
                 <div formArrayName="authors">
@@ -83,8 +84,10 @@
                     </mat-form-field>
                   </div>
                 </div>
-                <button mat-raised-button color="primary">Registrar</button>
-                <button mat-raised-button color="primary" (click)="close()">Voltar</button>
+                <div class="bottom-buttons">
+                  <button mat-raised-button color="basic">Registrar</button>
+                  <button mat-raised-button color="primary" (click)="close()">Voltar</button>
+                </div>
             </form>
         </mat-card>
     </mat-tab>
