@@ -1,10 +1,6 @@
-<mat-tab-group>
-    <mat-tab>
-        <ng-template mat-tab-label="">
-            <mat-icon>add</mat-icon>
-            Registrar um Livro
-        </ng-template>
+
         <mat-card>
+            <mat-card-title>Registrar um Livro</mat-card-title>
             <form [formGroup]="formulary" (ngSubmit)="submit()" class="form">
                 <mat-form-field  appearance="fill">
                     <mat-label>Titulo: </mat-label>
@@ -84,11 +80,11 @@
                     </mat-form-field>
                   </div>
                 </div>
-                <div class="bottom-buttons">
-                  <button mat-raised-button color="basic">Registrar</button>
-                  <button mat-raised-button color="primary" (click)="close()">Voltar</button>
+                <div align="center">
+                  <button mat-stroked-button color="primary">Registrar</button>
                 </div>
             </form>
+            <mat-card-actions align="end">
+              <button mat-button (click)="close()">Voltar</button>
+            </mat-card-actions>
         </mat-card>
-    </mat-tab>
-</mat-tab-group>
