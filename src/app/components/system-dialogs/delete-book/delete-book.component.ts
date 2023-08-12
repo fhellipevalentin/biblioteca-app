@@ -11,15 +11,15 @@ import { BooksService } from 'src/app/services/books.service';
 })
 export class DeleteBookComponent implements OnInit {
 
-  constructor( 
+  constructor(
     public dialogRef:MatDialogRef<DeleteBookComponent>,
     @Inject(MAT_DIALOG_DATA) public book:Book,
     public bookService: BooksService,
     private snackBar: MatSnackBar
     ) { }
-  
+
   ngOnInit(): void {
-    
+
   }
   close() {
     this.dialogRef.close();
@@ -29,7 +29,7 @@ export class DeleteBookComponent implements OnInit {
       this.bookService.deleteBookById(id).subscribe(()=>{
         this.dialogRef.close();
       })
-      this.snackBar.open('The Employee has been deleted', 'Success!', {
+      this.snackBar.open('O livro foi deletado', 'Sucesso!', {
         duration: 2000
       })
   }

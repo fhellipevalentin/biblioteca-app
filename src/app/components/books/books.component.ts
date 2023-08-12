@@ -58,14 +58,14 @@ export class BooksComponent implements OnInit {
     this.showData(this.pagina, this.tamanho)
   }
 
-  openDialogDeleteEmployee(book: Book) {
+  openDialogDeleteBook(book: Book) {
     this.dialog.open(DeleteBookComponent, {
       width: '300px',
       data: book,
     });
   }
 
-  openDialogAddEmployee() {
+  openDialogAddBook() {
     this.dialog.open(AddBookComponent, {
       width: '485px',
       height: '800px'
