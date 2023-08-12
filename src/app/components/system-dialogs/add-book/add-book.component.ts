@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Author } from 'src/app/model/author.model';
 import { Book } from 'src/app/model/books.model';
 import { Genre } from 'src/app/model/genres.model';
@@ -29,6 +30,7 @@ export class AddBookComponent implements OnInit {
     private formBuilder: FormBuilder,
     private genreService: GenreService,
     public dialog: MatDialog,
+    private snackBar: MatSnackBar,
     public dialogRef:MatDialogRef<AddBookComponent>,
     @Inject(MAT_DIALOG_DATA) public book:Book
     ) { }
@@ -54,7 +56,11 @@ export class AddBookComponent implements OnInit {
 
   submit() {
     this.bookService.insertBook(this.formulary.value).subscribe(data => {
-        console.log(data)
+      this.snackBar.open('Usuário adicionado com sucesso', 'Fechar', {
+        duration: 5000
+      });
+      this.close()
+      console.log(data)
     })
   }
 
