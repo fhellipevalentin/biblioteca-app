@@ -6,9 +6,8 @@ import { Book } from 'src/app/model/books.model';
 import { User } from 'src/app/model/user.model';
 import { BooksService } from 'src/app/services/books.service';
 import { DeleteBookComponent } from '../system-dialogs/delete-book/delete-book.component';
-import { AuthorService } from '../../services/author.service';
-import { Author } from 'src/app/model/author.model';
 import { AddBookComponent } from '../system-dialogs/add-book/add-book.component';
+import { EditBookComponent } from '../system-dialogs/edit-book/edit-book.component';
 
 @Component({
   selector: 'app-books',
@@ -20,7 +19,7 @@ export class BooksComponent implements OnInit {
   user = new User();
   formulary!: FormGroup;
   booksList: Book[] = [];
-  columns: string[] = [ 'id', 'title', 'author', 'collection', 'quantity', 'publicationDate', 'manufacturingDate', 'options']
+  columns: string[] = [ 'id', 'title', 'authors', 'collection', 'quantity', 'publicationDate', 'manufacturingDate', 'options']
 
   totalElementos = 0;
   pagina = 0;
@@ -41,7 +40,7 @@ export class BooksComponent implements OnInit {
       quantity: new FormControl('', Validators.required),
       publicationDate: new FormControl('', Validators.required),
       manufacturingDate: new FormControl('', Validators.required),
-      author: new FormControl('', Validators.required)
+      authors: new FormControl('', Validators.required)
     })
   }
 
@@ -63,6 +62,15 @@ export class BooksComponent implements OnInit {
       width: '300px',
       data: book,
     });
+  }
+
+  openDialogEditBook(book: Book) {
+    this.dialog.open(EditBookComponent, {
+      width: '485px',
+      height: '800px',
+      data: book
+    });
+    console.log(book)
   }
 
   openDialogAddBook() {

@@ -20,7 +20,7 @@ import { MatTableModule} from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -42,6 +42,7 @@ import { AuthActivateRouteGuard } from './routeguards/auth.routeguard';
 import { BooksService } from './services/books.service';
 import { DeleteBookComponent } from './components/system-dialogs/delete-book/delete-book.component';
 import { AddBookComponent } from './components/system-dialogs/add-book/add-book.component';
+import { EditBookComponent } from './components/system-dialogs/edit-book/edit-book.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { AddBookComponent } from './components/system-dialogs/add-book/add-book.
     LogoutComponent,
     BooksComponent,
     DeleteBookComponent,
-    AddBookComponent
+    AddBookComponent,
+    EditBookComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +94,12 @@ import { AddBookComponent } from './components/system-dialogs/add-book/add-book.
       provide : HTTP_INTERCEPTORS,
       useClass : XhrInterceptor,
       multi : true
-    }, AuthActivateRouteGuard, BooksService
+    },
+    {
+      provide: MAT_DIALOG_DEFAULT_OPTIONS,
+      useValue: {hasBackdrop: false}
+    },
+    AuthActivateRouteGuard, BooksService
   ],
   bootstrap: [AppComponent]
 })

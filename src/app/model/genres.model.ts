@@ -1,5 +1,5 @@
 export interface Genre {
 
-    id: number;
+    id: string;
     name : string;
 }

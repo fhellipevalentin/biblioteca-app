@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Author } from 'src/app/model/author.model';
+import { Authors } from 'src/app/model/author.model';
 import { Book } from 'src/app/model/books.model';
 import { Genre } from 'src/app/model/genres.model';
 import { AuthorService } from 'src/app/services/author.service';
@@ -49,7 +49,7 @@ export class AddBookComponent implements OnInit {
       quantity: ['', Validators.required],
       publicationDate: ['', Validators.required],
       manufacturingDate: ['', Validators.required],
-      authors: this.formBuilder.array<Author>([]),
+      authors: this.formBuilder.array<Authors>([]),
       genres: this.formBuilder.array<Genre>([]),
       })
   }

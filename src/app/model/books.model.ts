@@ -1,15 +1,15 @@
-import { Author } from "./author.model";
+import { Authors } from "./author.model";
 import { Genre } from "./genres.model";
 
 export interface Book {
 
-    id: number;
+    id: string;
     title : string;
     collection : string;
-    quantity : number;
-    publicationDate : Date;
-    manufacturingDate : Date;
-    author: Author[];
+    quantity : string;
+    publicationDate : string;
+    manufacturingDate : string;
+    authors: Authors[];
     genres: Genre[];
 
 }

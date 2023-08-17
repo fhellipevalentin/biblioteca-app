@@ -10,6 +10,9 @@ import { Errors } from '../errors/Errors';
   providedIn: 'root'
 })
 export class BooksService {
+  updateBook(editedBook: Book) {
+    throw new Error('Method not implemented.');
+  }
 
   URLbase : string = environment.rooturl;
   private errorHandle : Errors = new Errors();
@@ -22,6 +25,15 @@ export class BooksService {
       'Content-Type': 'application/json'
     })
   }
+
+  accessBookById(id:any): Observable<Book>{
+    return this.http.get<Book>(`${this.URLbase}/api/book/${id}`)
+    .pipe (
+      retry(1),
+      catchError(this.errorHandle.appError)
+    )
+  }
+
 
   listDataPaginada(page: number, linesPerPage: number): Observable<any> {
     const params = new HttpParams()
@@ -44,6 +56,14 @@ export class BooksService {
 
   insertBook(newData: any): Observable<Book> {
     return this.http.post<Book>(`${this.URLbase}/api/book/add`, newData)
+    .pipe(
+      retry(1),
+      catchError(this.errorHandle.appError)
+    )
+  }
+
+  editBook(id: any, newData: any): Observable<Book> {
+    return this.http.put<Book>(`${this.URLbase}/api/book/${id}`, newData, this.authorizationAccess)
     .pipe(
       retry(1),
       catchError(this.errorHandle.appError)
