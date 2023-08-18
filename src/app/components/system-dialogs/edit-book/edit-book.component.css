@@ -27,3 +27,7 @@
   left: 150px;
   position: fixed;
 }
+
+.example-chip-list {
+  width: 100%;
+}

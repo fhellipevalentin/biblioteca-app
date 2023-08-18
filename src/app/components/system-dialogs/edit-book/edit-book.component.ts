@@ -3,9 +3,11 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Book } from 'src/app/model/books.model';
 import { BooksService } from 'src/app/services/books.service';
-import { FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Authors } from 'src/app/model/author.model';
 import { Genre } from 'src/app/model/genres.model';
+import { AuthorService } from '../../../services/author.service';
+import { GenreService } from 'src/app/services/genre.service';
 
 @Component({
   selector: 'app-edit-book',
@@ -13,8 +15,6 @@ import { Genre } from 'src/app/model/genres.model';
   styleUrls: ['./edit-book.component.css']
 })
 export class EditBookComponent implements OnInit {
-
-  columns: string[] = [ 'id', 'title', 'authors', 'collection', 'quantity', 'publicationDate', 'manufacturingDate', 'genres']
 
   public formulary = this.buildForm()
   authorControl: FormControl = new FormControl('');
@@ -27,10 +27,13 @@ export class EditBookComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public book:Book,
     public bookService: BooksService,
     private snackBar: MatSnackBar,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authorService: AuthorService,
+    private genreService: GenreService
   ) { }
 
   ngOnInit(): void {
+    this.showData();
     setTimeout(() => {
       return this.formulary.patchValue({
         id: this.book.id,
@@ -43,6 +46,15 @@ export class EditBookComponent implements OnInit {
         authors: this.book.authors.map(authors => ({ id: authors.id, name: authors.name }))
       });
   });
+  }
+
+  showData() {
+    this.authorService.listDataAuthors().subscribe((data) => {
+      this.authorList = data
+    })
+    this.genreService.listDataGenres().subscribe((data) => {
+      this.genreList = data
+    })
   }
 
   submit() {
@@ -80,11 +92,15 @@ export class EditBookComponent implements OnInit {
     return this.formulary.controls["authors"] as FormArray;
   }
 
-  addAuthor() {
-    const authorForm = this.formBuilder.group({
-      id: [this.authorControl, Validators.required],
+  buildAuthorForm(): FormGroup {
+    return this.formBuilder.group({
+      id: [null, Validators.required], // Deixe o ID vazio para que ele possa ser preenchido posteriormente
       name: ['', Validators.required]
     });
+  }
+
+  addAuthor() {
+    const authorForm = this.buildAuthorForm();
     this.authorsFormArray.push(authorForm);
   }
 
@@ -96,12 +112,23 @@ export class EditBookComponent implements OnInit {
     return this.formulary.controls["genres"] as FormArray;
   }
 
-  addGenre() {
-    const genreForm = this.formBuilder.group({
+  buildGenreForm() {
+    return this.formBuilder.group({
       id: [this.genreControl.value, Validators.required],
       name: ['', Validators.required]
     });
+  }
+
+  addGenre() {
+    const genreForm = this.buildGenreForm()
     this.genresFormArray.push(genreForm);
+  }
+
+  getAuthorName(authorId: number): string {
+    console.log(authorId)
+    const author = this.authorList.find(author => author.id === authorId);
+    console.log(author)
+    return author ? author.name : '';
   }
 
   deleteGenre(genreIndex: number) {

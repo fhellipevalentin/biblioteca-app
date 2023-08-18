@@ -22,8 +22,6 @@ export class AddBookComponent implements OnInit {
   genreControl: FormControl = new FormControl('');
   authorControl: FormControl = new FormControl('');
 
-  columns: string[] = [ 'id', 'title', 'author', 'collection', 'quantity', 'publicationDate', 'manufacturingDate', 'genres', 'options']
-
   constructor(
     private bookService: BooksService,
     private authorService: AuthorService,

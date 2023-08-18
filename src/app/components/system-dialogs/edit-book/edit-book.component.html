@@ -46,24 +46,25 @@
               </mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
+      <hr>
       <div class="add">
         <button mat-raised-button type="button" (click)="addGenre()">Adicionar Gêneros</button>
       </div>
-        <div formArrayName="genres">
-          <div *ngFor="let genreForm of genresFormArray.controls; let i=index" [formGroupName]="i">
-              <mat-form-field appearance="fill">
-                  <mat-label>Gênero</mat-label>
-                  <mat-select formControlName="id">
-                    <mat-option>None</mat-option>
-                    <mat-option *ngFor="let genre of genreList" [value]="genre.id">
-                      {{genre.name}}
-                    </mat-option>
-                  </mat-select>
-                  <span (click)="deleteGenre(i)"  class="delete">
-                    <mat-icon>delete</mat-icon>
-                  </span>
-              </mat-form-field>
-          </div>
+      <div formArrayName="genres">
+        <div *ngFor="let genreForm of genresFormArray.controls; let i=index" [formGroupName]="i">
+          <mat-form-field appearance="fill">
+            <mat-label>Gênero</mat-label>
+            <mat-select formControlName="id">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let genre of genreList" [value]="genre.id">
+                {{genre.name}}
+              </mat-option>
+            </mat-select>
+            <span (click)="deleteGenre(i)" class="delete">
+              <mat-icon>delete</mat-icon>
+            </span>
+          </mat-form-field>
+        </div>
       </div>
       <div class="add">
         <button mat-raised-button type="button" (click)="addAuthor()">Adicionar Autores</button>
@@ -74,8 +75,8 @@
             <mat-label>Autores</mat-label>
             <mat-select formControlName="id">
               <mat-option>None</mat-option>
-              <mat-option *ngFor="let authors of authorList" [value]="authors.id">
-                {{authors.name}}
+              <mat-option *ngFor="let author of authorList" [value]="author.id">
+                {{author.name}}
               </mat-option>
             </mat-select>
             <span (click)="deleteAuthor(i)" class="delete">
@@ -85,7 +86,7 @@
         </div>
       </div>
       <div align="center">
-        <button mat-stroked-button color="primary">Registrar</button>
+        <button mat-stroked-button color="primary">Salvar</button>
       </div>
   </form>
   <mat-card-actions align="end">
