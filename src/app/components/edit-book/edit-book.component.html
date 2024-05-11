@@ -1,0 +1,51 @@
+<mat-card>
+  <mat-card-title>Editar Livro </mat-card-title>
+  <form (ngSubmit)="submit()" class="form">
+      <mat-form-field  appearance="fill">
+          <mat-label>ID: </mat-label>
+          <input [(ngModel)]="book.id" matInput name="id">
+      </mat-form-field>
+      <mat-form-field  appearance="fill">
+          <mat-label>Titulo: </mat-label>
+          <input matInput [(ngModel)]="book.title" matInput name="title">
+      </mat-form-field>
+      <mat-form-field  appearance="fill">
+          <mat-label>Coleção: </mat-label>
+          <input matInput [(ngModel)]="book.collection" matInput name="collection">
+      </mat-form-field>
+      <mat-form-field  appearance="fill">
+          <mat-label>Quantidade: </mat-label>
+          <input matInput [(ngModel)]="book.quantity" matInput name="quantity">
+      </mat-form-field>
+      <br>
+      <mat-form-field  appearance="fill">
+          <mat-label>Data de Publicação: </mat-label>
+          <input matInput [matDatepicker]="picker1" [(ngModel)]="book.publicationDate" matInput name="publicationDate">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker1" class="arrow">
+                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+              </mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+          <mat-label>Data de Fabricação: </mat-label>
+          <input matInput [matDatepicker]="picker"[(ngModel)]="book.manufacturingDate" matInput name="manufacturingDate">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker" class="arrow">
+                <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+              </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <ng-container *ngIf="book.authors.length">
+        <mat-form-field *ngFor="let item of book.authors; let i = index" appearance="fill">
+          <mat-label>Autores: </mat-label>
+          <input matInput [(ngModel)]="book.authors[i].name" matInput name="book.authors[{{i}}].name">
+        </mat-form-field>
+      </ng-container>
+      <hr>
+
+      <div align="center">
+        <button mat-stroked-button color="primary">Salvar</button>
+      </div>
+  </form>
+</mat-card>

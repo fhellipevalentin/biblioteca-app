@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
-import { Book } from 'src/app/model/books.model';
 import { User } from 'src/app/model/user.model';
 import { BooksService } from 'src/app/services/books.service';
-import { DeleteBookComponent } from '../system-dialogs/delete-book/delete-book.component';
+
 import { AddBookComponent } from '../system-dialogs/add-book/add-book.component';
-import { EditBookComponent } from '../system-dialogs/edit-book/edit-book.component';
+import { DeleteBookComponent } from '../system-dialogs/delete-book/delete-book.component';
+import { Book } from './../../model/books.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-books',
@@ -15,6 +17,8 @@ import { EditBookComponent } from '../system-dialogs/edit-book/edit-book.compone
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
+
+  public book: Book;
 
   user = new User();
   formulary!: FormGroup;
@@ -29,7 +33,7 @@ export class BooksComponent implements OnInit {
   pageSizeOptions: number[] = [5];
   searchText = '';
 
-  constructor( private bookService: BooksService, private formBuilder: FormBuilder, public dialog: MatDialog) { }
+  constructor( private bookService: BooksService, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.showData(this.pagina, this.tamanho)
@@ -62,15 +66,6 @@ export class BooksComponent implements OnInit {
       width: '300px',
       data: book,
     });
-  }
-
-  openDialogEditBook(book: Book) {
-    this.dialog.open(EditBookComponent, {
-      width: '485px',
-      height: '800px',
-      data: book
-    });
-    console.log(book)
   }
 
   openDialogAddBook() {

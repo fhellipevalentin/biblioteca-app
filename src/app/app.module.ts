@@ -42,7 +42,7 @@ import { AuthActivateRouteGuard } from './routeguards/auth.routeguard';
 import { BooksService } from './services/books.service';
 import { DeleteBookComponent } from './components/system-dialogs/delete-book/delete-book.component';
 import { AddBookComponent } from './components/system-dialogs/add-book/add-book.component';
-import { EditBookComponent } from './components/system-dialogs/edit-book/edit-book.component';
+import { EditBookComponent } from './components/edit-book/edit-book.component';
 
 
 @NgModule({

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { User } from "src/app/model/user.model";
-import { Observable, Subject } from 'rxjs';
 import { AppConstants } from 'src/app/constants/app.constants';
 import { environment } from '../../environments/environment';
 import { LoginData } from '../model/logindata.model';

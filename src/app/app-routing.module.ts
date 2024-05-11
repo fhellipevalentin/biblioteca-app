@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthActivateRouteGuard } from './routeguards/auth.routeguard';
+import { EditBookComponent } from './components/edit-book/edit-book.component';
 
 
 
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthActivateRouteGuard]},
   {path: 'logout', component: LogoutComponent, canActivate: [AuthActivateRouteGuard]},
-  {path: 'books', component: BooksComponent, canActivate: [AuthActivateRouteGuard]}
+  {path: 'books', component: BooksComponent, canActivate: [AuthActivateRouteGuard]},
+  {path: 'book/:id', component: EditBookComponent, canActivate: [AuthActivateRouteGuard]}
 ]
 
 @NgModule({

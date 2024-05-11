@@ -4,10 +4,8 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Authors } from 'src/app/model/author.model';
 import { Book } from 'src/app/model/books.model';
-import { Genre } from 'src/app/model/genres.model';
 import { AuthorService } from 'src/app/services/author.service';
 import { BooksService } from 'src/app/services/books.service';
-import { GenreService } from 'src/app/services/genre.service';
 
 @Component({
   selector: 'app-add-book',
@@ -26,7 +24,6 @@ export class AddBookComponent implements OnInit {
     private bookService: BooksService,
     private authorService: AuthorService,
     private formBuilder: FormBuilder,
-    private genreService: GenreService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
     public dialogRef:MatDialogRef<AddBookComponent>,
@@ -48,7 +45,9 @@ export class AddBookComponent implements OnInit {
       publicationDate: ['', Validators.required],
       manufacturingDate: ['', Validators.required],
       authors: this.formBuilder.array<Authors>([]),
-      genres: this.formBuilder.array<Genre>([]),
+      genre1: ['', Validators.required],
+      genre2: ['', Validators.required],
+      genre3: ['', Validators.required]
       })
   }
 
@@ -65,10 +64,6 @@ export class AddBookComponent implements OnInit {
   showData() {
     this.authorService.listDataAuthors().subscribe((data: {})=> {
       this.authorList = data
-      console.log(data)
-    })
-    this.genreService.listDataGenres().subscribe((data: {}) => {
-      this.genreList = data
       console.log(data)
     })
   }
