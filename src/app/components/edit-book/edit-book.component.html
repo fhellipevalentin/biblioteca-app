@@ -40,7 +40,16 @@
         <mat-form-field *ngFor="let item of book.authors; let i = index" appearance="fill">
           <mat-label>Autores: </mat-label>
           <input matInput [(ngModel)]="book.authors[i].name" matInput name="book.authors[{{i}}].name">
+          <button mat-icon-button (click)="removeAuthor(i)" aria-label="Remove Author">
+            <mat-icon>delete</mat-icon>
+          </button>
         </mat-form-field>
+      </ng-container>
+      <ng-container *ngIf="book.id">
+        <button type="button" mat-mini-fab color="accent" (click)="addAuthor()"
+            aria-label="Add Author" matTooltip="Add Author">
+            <mat-icon>add</mat-icon>
+        </button>
       </ng-container>
       <hr>
 

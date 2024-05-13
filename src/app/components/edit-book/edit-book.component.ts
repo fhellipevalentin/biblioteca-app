@@ -16,13 +16,16 @@ export class EditBookComponent implements OnInit {
 
   book!: Book;
   feedback: any = {};
+  authors!: Authors;
 
 
   constructor(
     public bookService: BooksService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+  ) {
+    this.book = new Book();
+  }
 
   ngOnInit(): void {
     this.route.params.pipe(
@@ -64,8 +67,12 @@ export class EditBookComponent implements OnInit {
     );*/
   }
 
-  deleteAuthor(authorIndex: number) {
+  addAuthor() {
+    this.book.authors.push(new Authors());
+  }
 
+  removeAuthor(index: number) {
+    this.book.authors.splice(index, 1);
   }
 
 }
