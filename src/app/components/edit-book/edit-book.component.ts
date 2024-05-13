@@ -1,11 +1,12 @@
-import { Book } from './../../model/books.model';
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map, of, switchMap } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { map, switchMap } from 'rxjs';
 import { Authors } from 'src/app/model/author.model';
-import { AuthorService } from 'src/app/services/author.service';
 import { BooksService } from 'src/app/services/books.service';
+
+import { AddAuthorComponent } from '../system-dialogs/add-author/add-author.component';
+import { Book } from './../../model/books.model';
 
 @Component({
   selector: 'app-edit-book',
@@ -21,8 +22,8 @@ export class EditBookComponent implements OnInit {
 
   constructor(
     public bookService: BooksService,
-    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
+    public dialog: MatDialog
   ) {
     this.book = new Book();
   }
@@ -31,20 +32,12 @@ export class EditBookComponent implements OnInit {
     this.route.params.pipe(
       map(p => p['id']),
       switchMap(id => {
-        if (id === 'new') {
-          return of(new Book());
-        }
         return this.bookService.accessBookById(id);
       })
     ).subscribe({
       next: book => {
         this.book = book;
-        this.feedback = {};
-      },
-      error: () => {
-        this.feedback = {type: 'warning', message: 'Error loading'};
       }
-
     });
   }
 
@@ -69,6 +62,13 @@ export class EditBookComponent implements OnInit {
 
   addAuthor() {
     this.book.authors.push(new Authors());
+  }
+
+  openDialog(book: Book): void {
+    const dialogRef = this.dialog.open(AddAuthorComponent, {
+      width: '250px',
+      data: book,
+    });
   }
 
   removeAuthor(index: number) {

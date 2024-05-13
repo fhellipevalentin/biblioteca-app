@@ -43,6 +43,7 @@ import { BooksService } from './services/books.service';
 import { DeleteBookComponent } from './components/system-dialogs/delete-book/delete-book.component';
 import { AddBookComponent } from './components/system-dialogs/add-book/add-book.component';
 import { EditBookComponent } from './components/edit-book/edit-book.component';
+import { AddAuthorComponent } from './components/system-dialogs/add-author/add-author.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { EditBookComponent } from './components/edit-book/edit-book.component';
     BooksComponent,
     DeleteBookComponent,
     AddBookComponent,
-    EditBookComponent
+    EditBookComponent,
+    AddAuthorComponent
   ],
   imports: [
     BrowserModule,
