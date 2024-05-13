@@ -3,7 +3,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Autores</mat-label>
     <mat-select [(ngModel)]="authorSelected" name="author">
-      <mat-option *ngFor="let author of authorList; let i = index" [value]="author.name" >
+      <mat-option *ngFor="let author of authorList; let i = index" [value]="author" >
         {{author.name}}
       </mat-option>
     </mat-select>

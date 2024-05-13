@@ -1,6 +1,7 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 import { Authors } from 'src/app/model/author.model';
 import { BooksService } from 'src/app/services/books.service';
@@ -23,7 +24,9 @@ export class EditBookComponent implements OnInit {
   constructor(
     public bookService: BooksService,
     private route: ActivatedRoute,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar,
+    public router: Router
   ) {
     this.book = new Book();
   }
@@ -42,22 +45,22 @@ export class EditBookComponent implements OnInit {
   }
 
   submit() {
-    /*
-    this.bookService.editBook(this.book.id, this.formulary.value).subscribe(
+
+    this.bookService.editBook(this.book.id, this.book).subscribe(
       () => {
         this.snackBar.open('Livro atualizado com sucesso!', 'Fechar', {
           duration: 3000,
         });
-        this.dialogRef.close(); // Feche o diálogo após a atualização
+      this.router.navigate(['books'])
+      console.log(this.book)
       },
       (error) => {
         console.error('Erro ao atualizar o livro:', error);
         this.snackBar.open('Erro ao atualizar o livro.', 'Fechar', {
           duration: 3000,
         });
-        this.close();
       }
-    );*/
+    );
   }
 
   addAuthor() {

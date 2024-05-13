@@ -12,7 +12,7 @@ import { Authors } from './../../../model/author.model';
 })
 export class AddAuthorComponent implements OnInit {
 
-  authorSelected: string;
+  authorSelected: Authors;
 
   constructor(
     public dialogRef: MatDialogRef<AddAuthorComponent>,
@@ -42,8 +42,8 @@ export class AddAuthorComponent implements OnInit {
 
   }
 
-  addAuthor(author: string) {
-    this.book.authors.push(new Authors({id: null, name: author}));
+  addAuthor(obj: Authors) {
+    this.book.authors.push(new Authors({id: obj.id, name: obj.name}));
   }
 
 }
