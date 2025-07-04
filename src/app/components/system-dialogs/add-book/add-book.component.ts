@@ -52,13 +52,17 @@ export class AddBookComponent implements OnInit {
   }
 
   submit() {
-    this.bookService.insertBook(this.formulary.value).subscribe(data => {
-      this.snackBar.open('Usuário adicionado com sucesso', 'Fechar', {
-        duration: 5000
-      });
-      this.close()
-      console.log(data)
-    })
+    if (this.formulary.valid) {
+      this.bookService.insertBook(this.formulary.value).subscribe(data => {
+        this.snackBar.open('Livro adicionado com sucesso', 'Fechar', {
+          duration: 5000
+        });
+        this.close()
+        console.log(data)
+      })
+    } else {
+      this.formulary.markAllAsTouched();
+    }
   }
 
   showData() {

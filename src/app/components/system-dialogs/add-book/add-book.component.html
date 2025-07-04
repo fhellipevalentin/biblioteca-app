@@ -1,71 +1,78 @@
-
-        <mat-card>
-            <mat-card-title>Registrar um Livro</mat-card-title>
-            <form [formGroup]="formulary" (ngSubmit)="submit()" class="form">
-                <mat-form-field  appearance="fill">
-                    <mat-label>Titulo: </mat-label>
-                    <input formControlName="title" matInput>
-                    <div *ngIf="formulary.get('title')?.errors">
-                        <div *ngIf="formulary.get('title')?.errors?.['required'] && !formulary.get('title')?.pristine">*Campo Titulo é <strong>obrigatório</strong></div>
-                    </div>
-                </mat-form-field>
-                <mat-form-field  appearance="fill">
-                    <mat-label>Coleção: </mat-label>
-                    <input formControlName="collection" matInput>
-                </mat-form-field>
-                    <div *ngIf="formulary.get('collection')?.errors">
-                        <div *ngIf="formulary.get('collection')?.errors?.['required'] && !formulary.get('collection')?.pristine">*Campo Coleção é <strong>obrigatório</strong></div>
-                    </div>
-                <mat-form-field  appearance="fill">
-                    <mat-label>Quantidade: </mat-label>
-                    <input formControlName="quantity" matInput>
-                    <div *ngIf="formulary.get('quantity')?.errors">
-                        <div *ngIf="formulary.get('quantity')?.errors?.['required'] && !formulary.get('quantity')?.pristine">*Campo Quantidade é <strong>obrigatório</strong></div>
-                    </div>
-                </mat-form-field>
-                <br>
-                <mat-form-field  appearance="fill">
-                    <mat-label>Data de Publicação: </mat-label>
-                    <input matInput [matDatepicker]="picker1" formControlName="publicationDate">
-                        <mat-hint>MM/DD/YYYY</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="picker1" class="arrow">
-                          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                        </mat-datepicker-toggle>
-                    <mat-datepicker #picker1></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-label>Data de Fabricação: </mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="manufacturingDate">
-                        <mat-hint>MM/DD/YYYY</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="picker" class="arrow">
-                          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                        </mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-                <div class="add">
-                  <button mat-raised-button type="button" (click)="addAuthor()">Adicionar Autores</button>
-                </div>
-                <div formArrayName="authors">
-                  <div *ngFor="let authorForm of authorsFormArray.controls; let i=index" [formGroupName]="i">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Autores</mat-label>
-                      <mat-select formControlName="id">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let author of authorList" [value]="author.id">
-                          {{author.name}}
-                        </mat-option>
-                      </mat-select>
-                      <span (click)="deleteAuthor(i)" class="delete">
-                        <mat-icon>delete</mat-icon>
-                      </span>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div align="center">
-                  <button mat-stroked-button color="primary">Registrar</button>
-                </div>
-            </form>
-            <mat-card-actions align="end">
-              <button mat-button (click)="close()">Voltar</button>
-            </mat-card-actions>
-        </mat-card>
+<mat-dialog-content class="mat-typography">
+  <h2 mat-dialog-title>Registrar um Livro</h2>
+  <form [formGroup]="formulary" (ngSubmit)="submit()" class="form">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Titulo: </mat-label>
+      <input formControlName="title" matInput>
+      <div *ngIf="formulary.get('title')?.errors">
+        <div *ngIf="formulary.get('title')?.errors?.['required'] && !formulary.get('title')?.pristine">*Campo Titulo é
+          <strong>obrigatório</strong>
+        </div>
+      </div>
+    </mat-form-field>
+    <div class="input-row">
+      <mat-form-field appearance="fill" class="input-item">
+        <mat-label>Coleção: </mat-label>
+        <input formControlName="collection" matInput>
+      </mat-form-field>
+      <div *ngIf="formulary.get('collection')?.errors">
+        <div *ngIf="formulary.get('collection')?.errors?.['required'] && !formulary.get('collection')?.pristine">*Campo
+          Coleção é <strong>obrigatório</strong></div>
+      </div>
+      <mat-form-field appearance="fill" class="input-item">
+        <mat-label>Quantidade: </mat-label>
+        <input formControlName="quantity" matInput>
+        <div *ngIf="formulary.get('quantity')?.errors">
+          <div *ngIf="formulary.get('quantity')?.errors?.['required'] && !formulary.get('quantity')?.pristine">*Campo
+            Quantidade é <strong>obrigatório</strong></div>
+        </div>
+      </mat-form-field>
+    </div>
+    <br>
+    <div class="input-row">
+      <mat-form-field appearance="fill" class="input-item">
+        <mat-label>Data de Publicação: </mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="publicationDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker1" class="arrow">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="input-item">
+        <mat-label>Data de Fabricação: </mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="manufacturingDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker" class="arrow">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="add">
+      <button mat-raised-button type="button" (click)="addAuthor()">Adicionar Autores</button>
+    </div>
+    <div formArrayName="authors" class="scrollable-content">
+      <div *ngFor="let authorForm of authorsFormArray.controls; let i=index" [formGroupName]="i">
+        <mat-form-field appearance="fill">
+          <mat-label>Autores</mat-label>
+          <mat-select formControlName="id">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let author of authorList" [value]="author.id">
+              {{author.name}}
+            </mat-option>
+          </mat-select>
+          <span (click)="deleteAuthor(i)" class="delete">
+            <mat-icon>delete</mat-icon>
+          </span>
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-dialog-actions align="center" class="sticky-actions">
+      <div align="center">
+        <button mat-stroked-button color="primary" (click)="submit()">Registrar</button>
+      </div>
+      <button mat-button (click)="close()">Voltar</button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

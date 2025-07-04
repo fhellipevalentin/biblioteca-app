@@ -1,24 +1,29 @@
 .delete {
   position: absolute;
-  right: -40px; /* Ajuste esse valor para posicionar corretamente o ícone */
-  top: 20%; /* Ajuste esse valor para posicionar corretamente o ícone verticalmente */
+  right: -40px;
+  /* Ajuste esse valor para posicionar corretamente o ícone */
+  top: 20%;
+  /* Ajuste esse valor para posicionar corretamente o ícone verticalmente */
   transform: translateY(-50%);
   cursor: pointer;
 }
 
 .arrow {
   position: absolute;
-  right: -10px; /* Ajuste esse valor para posicionar corretamente o ícone */
-  top: 20%; /* Ajuste esse valor para posicionar corretamente o ícone verticalmente */
+  right: -10px;
+  /* Ajuste esse valor para posicionar corretamente o ícone */
+  top: 20%;
+  /* Ajuste esse valor para posicionar corretamente o ícone verticalmente */
   transform: translateY(-50%);
   cursor: pointer;
 }
+
 .add {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.bottom-buttons{
+.bottom-buttons {
   margin: auto;
   width: 40%;
 }
@@ -28,3 +33,42 @@
   position: fixed;
 }
 
+.scrollable-content {
+  max-height: 400px;
+  /* ou o tamanho desejado */
+  overflow-y: auto;
+  padding-right: 8px;
+  /* opcional: evita corte de scroll */
+}
+
+.sticky-actions {
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  padding: 12px 16px;
+  z-index: 2;
+}
+
+::ng-deep mat-dialog-content {
+  overflow: hidden !important;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 50%;
+}
+
+.input-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  /* permite quebrar para linha abaixo em telas menores */
+}
+
+.input-item {
+  flex: 1;
+  min-width: 200px;
+}

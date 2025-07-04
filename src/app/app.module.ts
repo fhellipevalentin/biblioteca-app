@@ -26,6 +26,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
@@ -72,6 +73,7 @@ import { AddAuthorComponent } from './components/system-dialogs/add-author/add-a
     MatChipsModule,
     MatAutocompleteModule,
 
+    MatDividerModule,
     MatIconModule,
     MatToolbarModule,
     MatButtonToggleModule,
