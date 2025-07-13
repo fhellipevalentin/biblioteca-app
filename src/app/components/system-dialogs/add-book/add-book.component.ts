@@ -26,9 +26,9 @@ export class AddBookComponent implements OnInit {
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
-    public dialogRef:MatDialogRef<AddBookComponent>,
-    @Inject(MAT_DIALOG_DATA) public book:Book
-    ) { }
+    public dialogRef: MatDialogRef<AddBookComponent>,
+    @Inject(MAT_DIALOG_DATA) public book: Book
+  ) { }
 
 
   ngOnInit(): void {
@@ -45,13 +45,18 @@ export class AddBookComponent implements OnInit {
       publicationDate: ['', Validators.required],
       manufacturingDate: ['', Validators.required],
       authors: this.formBuilder.array<Authors>([]),
-      genre1: ['', Validators.required],
-      genre2: ['', Validators.required],
-      genre3: ['', Validators.required]
-      })
+      genre1: [''],
+      genre2: [''],
+      genre3: ['']
+    })
   }
 
   submit() {
+    console.log('Formulário válido?', this.formulary.valid);
+    console.log('Status:', this.formulary.status);
+    console.log('Erros:', this.formulary.errors);
+    console.log('Valor:', this.formulary.value);
+
     if (this.formulary.valid) {
       this.bookService.insertBook(this.formulary.value).subscribe(data => {
         this.snackBar.open('Livro adicionado com sucesso', 'Fechar', {
@@ -66,7 +71,7 @@ export class AddBookComponent implements OnInit {
   }
 
   showData() {
-    this.authorService.listDataAuthors().subscribe((data: {})=> {
+    this.authorService.listDataAuthors().subscribe((data: {}) => {
       this.authorList = data
       console.log(data)
     })
@@ -78,8 +83,8 @@ export class AddBookComponent implements OnInit {
 
   addAuthor() {
     const authorForm = this.formBuilder.group({
-      id: [this.authorControl.value, Validators.required],
-      name: ['', Validators.required]
+      id: [this.authorControl.value],
+      name: ['']
     });
     this.authorsFormArray.push(authorForm)
   }
@@ -94,8 +99,8 @@ export class AddBookComponent implements OnInit {
 
   addGenre() {
     const genreForm = this.formBuilder.group({
-      id: [this.genreControl.value, Validators.required],
-      name: ['', Validators.required]
+      id: [this.genreControl.value],
+      name: ['']
     });
     this.genresFormArray.push(genreForm);
   }

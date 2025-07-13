@@ -1,6 +1,6 @@
-<mat-dialog-content class="mat-typography">
-  <h2 mat-dialog-title>Registrar um Livro</h2>
-  <form [formGroup]="formulary" (ngSubmit)="submit()" class="form">
+<form [formGroup]="formulary" (ngSubmit)="submit()" class="form-container">
+  <mat-dialog-content class="mat-typography content-area">
+    <h2 mat-dialog-title>Registrar um Livro</h2>
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Titulo: </mat-label>
       <input formControlName="title" matInput>
@@ -68,11 +68,9 @@
         </mat-form-field>
       </div>
     </div>
-    <mat-dialog-actions align="center" class="sticky-actions">
-      <div align="center">
-        <button mat-stroked-button color="primary" (click)="submit()">Registrar</button>
-      </div>
-      <button mat-button (click)="close()">Voltar</button>
-    </mat-dialog-actions>
-  </form>
-</mat-dialog-content>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center" class="footer-area">
+    <button mat-stroked-button color="primary" type="submit">Registrar</button>
+    <button mat-button (click)="close()">Voltar</button>
+  </mat-dialog-actions>
+</form>

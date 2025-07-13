@@ -1,9 +1,12 @@
+.content-area {
+  flex: 1;
+  overflow-y: auto; 
+}
+
 .delete {
   position: absolute;
   right: -40px;
-  /* Ajuste esse valor para posicionar corretamente o ícone */
   top: 20%;
-  /* Ajuste esse valor para posicionar corretamente o ícone verticalmente */
   transform: translateY(-50%);
   cursor: pointer;
 }
@@ -11,9 +14,7 @@
 .arrow {
   position: absolute;
   right: -10px;
-  /* Ajuste esse valor para posicionar corretamente o ícone */
   top: 20%;
-  /* Ajuste esse valor para posicionar corretamente o ícone verticalmente */
   transform: translateY(-50%);
   cursor: pointer;
 }
@@ -34,11 +35,23 @@
 }
 
 .scrollable-content {
-  max-height: 400px;
-  /* ou o tamanho desejado */
+  max-height: 300px;
   overflow-y: auto;
   padding-right: 8px;
-  /* opcional: evita corte de scroll */
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.footer-area {
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding: 12px 16px;
+  z-index: 1;
 }
 
 .sticky-actions {
@@ -57,15 +70,10 @@
   width: 100%;
 }
 
-.half-width {
-  width: 50%;
-}
-
 .input-row {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  /* permite quebrar para linha abaixo em telas menores */
 }
 
 .input-item {
