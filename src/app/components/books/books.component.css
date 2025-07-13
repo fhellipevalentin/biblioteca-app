@@ -10,3 +10,9 @@
     top: 140px;
     right: 20px;
 }
+.expanded-content {
+  margin-top: 12px;
+  padding: 8px;
+  background: #f4f4f4;
+  border-radius: 4px;
+}

@@ -33,6 +33,10 @@ export class BooksComponent implements OnInit {
   pageSizeOptions: number[] = [5];
   searchText = '';
 
+  expandedElement: any = null;
+
+
+
   constructor( private bookService: BooksService, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder, public dialog: MatDialog) { }
 
   ngOnInit(): void {
