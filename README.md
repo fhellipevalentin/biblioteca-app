@@ -1,27 +1,88 @@
-# BibliotecaApp
+# 📚 Biblioteca App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.4.
+> **Nota:** Este é um README temporário em fase de desenvolvimento.
 
-## Development server
+Aplicação web front-end para gerenciamento de acervo de biblioteca, desenvolvida com **Angular 14** e **Angular Material**.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## ✨ Funcionalidades Atuais
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Autenticação e Controle de Acesso**: Login/Logout com proteção de rotas (`AuthActivateRouteGuard`) e interceptador HTTP (`XhrInterceptor`).
+- **Dashboard**: Painel inicial para usuários autenticados.
+- **Gerenciamento de Livros**:
+  - Listagem e busca/filtro de livros.
+  - Cadastro de novos livros.
+  - Edição de informações de livros existentes.
+  - Exclusão de livros via diálogo de confirmação.
+- **Gerenciamento de Autores**: Cadastro rápido de autores integrado aos diálogos do sistema.
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🛠️ Tecnologias Utilizadas
 
-## Running unit tests
+- **[Angular 14](https://angular.io/)** (`~14.2.0`)
+- **[Angular Material](https://material.angular.io/)** (`^13.0.0`)
+- **RxJS** (`~7.5.0`)
+- **ng2-search-filter** (`^0.5.1`)
+- **ngx-mask** (`^15.1.0`)
+- **typescript-cookie** (`^1.0.4`)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+---
 
-## Running end-to-end tests
+## 🚀 Como Executar o Projeto
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Pré-requisitos
 
-## Further help
+- **Node.js** (versão compatível com Angular 14, ex.: Node 14.x ou 16.x)
+- **Angular CLI** (`npm install -g @angular/cli@14`)
+- **API Back-end** rodando localmente (por padrão configurada em `http://localhost:8888` no arquivo `src/environments/environment.ts`)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Passo a passo
+
+1. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
+
+2. **Inicie o servidor de desenvolvimento:**
+   ```bash
+   npm start
+   # ou
+   ng serve
+   ```
+
+3. **Acesse no navegador:**
+   ```
+   http://localhost:4200/
+   ```
+
+---
+
+## 📦 Scripts Disponíveis
+
+| Comando | Descrição |
+| :--- | :--- |
+| `npm start` / `ng serve` | Inicia o servidor de desenvolvimento em `http://localhost:4200/` |
+| `npm run build` | Gera o build de produção na pasta `dist/` |
+| `npm run watch` | Compila em modo de desenvolvimento observando alterações |
+| `npm test` | Executa os testes unitários via Karma/Jasmine |
+
+---
+
+## 📂 Estrutura Básica do Projeto
+
+```text
+src/app/
+├── components/
+│   ├── books/             # Listagem e visualização do acervo
+│   ├── dashboard/         # Painel principal
+│   ├── home/              # Página inicial pública
+│   ├── login/ & logout/   # Fluxo de autenticação
+│   ├── system-dialogs/    # Modais (add-book, edit-book, delete-book, add-author)
+│   └── toolbar/           # Barra de navegação superior
+├── interceptors/          # Interceptadores de requisições HTTP
+├── model/                 # Modelos de dados (Book, Author, User, etc.)
+├── routeguards/           # Guardas de rota de autenticação
+└── services/              # Comunicação com a API back-end
+```
