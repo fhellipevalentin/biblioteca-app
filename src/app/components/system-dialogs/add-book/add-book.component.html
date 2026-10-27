@@ -1,33 +1,41 @@
 <form [formGroup]="formulary" (ngSubmit)="submit()" class="form-container">
-  <mat-dialog-content class="mat-typography content-area">
-    <h2 mat-dialog-title>Registrar um Livro</h2>
-    <mat-form-field appearance="fill" class="full-width">
+    <div class="header-row">
+      <h2 mat-dialog-title><mat-icon class="title-icon">menu_book</mat-icon>
+        Adicionar Livro
+      </h2>
+      <button type="button" mat-icon-button (click)="close()" aria-label="Fechar">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="content-area">
+      <mat-form-field appearance="fill" class="full-width">
       <mat-label>Titulo: </mat-label>
-      <input formControlName="title" matInput>
-      <div *ngIf="formulary.get('title')?.errors">
-        <div *ngIf="formulary.get('title')?.errors?.['required'] && !formulary.get('title')?.pristine">*Campo Titulo é
-          <strong>obrigatório</strong>
-        </div>
-      </div>
+      <input formControlName="title" matInput placeholder="Digite o título do livro">
+        <mat-error *ngIf="formulary.get('title')?.hasError('required')">
+          O campo Título é <strong>obrigatório</strong>.
+        </mat-error>
     </mat-form-field>
     <div class="input-row">
-      <mat-form-field appearance="fill" class="input-item">
-        <mat-label>Coleção: </mat-label>
-        <input formControlName="collection" matInput>
-      </mat-form-field>
-      <div *ngIf="formulary.get('collection')?.errors">
-        <div *ngIf="formulary.get('collection')?.errors?.['required'] && !formulary.get('collection')?.pristine">*Campo
-          Coleção é <strong>obrigatório</strong></div>
+        <mat-form-field appearance="fill" class="input-item">
+          <mat-label>Coleção</mat-label>
+          <input matInput formControlName="collection" placeholder="Ex: Clássicos">
+          <mat-error *ngIf="formulary.get('collection')?.hasError('required')">
+            O campo Coleção é <strong>obrigatório</strong>.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="input-item">
+          <mat-label>Quantidade</mat-label>
+          <input matInput type="number" min="0" formControlName="quantity">
+          <mat-error *ngIf="formulary.get('quantity')?.hasError('required')">
+            Informe a <strong>quantidade</strong>.
+          </mat-error>
+          <mat-error *ngIf="formulary.get('quantity')?.hasError('min')">
+            A quantidade não pode ser negativa.
+          </mat-error>
+        </mat-form-field>
       </div>
-      <mat-form-field appearance="fill" class="input-item">
-        <mat-label>Quantidade: </mat-label>
-        <input formControlName="quantity" matInput>
-        <div *ngIf="formulary.get('quantity')?.errors">
-          <div *ngIf="formulary.get('quantity')?.errors?.['required'] && !formulary.get('quantity')?.pristine">*Campo
-            Quantidade é <strong>obrigatório</strong></div>
-        </div>
-      </mat-form-field>
-    </div>
     <br>
     <div class="input-row">
       <mat-form-field appearance="fill" class="input-item">
@@ -38,6 +46,9 @@
           <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
         </mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
+        <mat-error *ngIf="formulary.get('publicationDate')?.hasError('required')">
+            Data de publicação é <strong>obrigatória</strong>
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill" class="input-item">
         <mat-label>Data de Fabricação: </mat-label>
@@ -47,10 +58,15 @@
           <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
         </mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="formulary.get('manufacturingDate')?.hasError('required')">
+            Data de fabricação é <strong>obrigatória</strong>.
+        </mat-error>
       </mat-form-field>
     </div>
     <div class="add">
-      <button mat-raised-button type="button" (click)="addAuthor()">Adicionar Autores</button>
+      <button mat-stroked-button color="primary" type="button" (click)="addAuthor()">
+        <mat-icon>person_add</mat-icon> Adicionar Autores
+      </button>
     </div>
     <div formArrayName="authors" class="scrollable-content">
       <div *ngFor="let authorForm of authorsFormArray.controls; let i=index" [formGroupName]="i">
@@ -62,13 +78,14 @@
               {{author.name}}
             </mat-option>
           </mat-select>
-          <span (click)="deleteAuthor(i)" class="delete">
-            <mat-icon>delete</mat-icon>
-          </span>
+          <button mat-icon-button color="warn" (click)="deleteAuthor(i )" class="delete">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
         </mat-form-field>
       </div>
     </div>
-  </mat-dialog-content>
+  </div>
+  <mat-divider></mat-divider>
   <mat-dialog-actions align="center" class="footer-area">
     <button mat-stroked-button color="primary" type="submit">Registrar</button>
     <button mat-button (click)="close()">Voltar</button>

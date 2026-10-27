@@ -1,0 +1,115 @@
+<app-toolbar *ngIf="!isDialog"></app-toolbar>
+
+<div [ngClass]="{'page-wrapper': !isDialog, 'dialog-wrapper': isDialog}">
+  <form [formGroup]="formulary" (ngSubmit)="submit()" class="form-container">
+    <div class="header-row">
+      <h2 class="dialog-title">
+        <mat-icon class="title-icon">menu_book</mat-icon>
+        Editar Livro <span class="book-id-badge" *ngIf="book?.id">#{{ book.id }}</span>
+      </h2>
+      <button type="button" mat-icon-button (click)="close()" aria-label="Fechar">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="content-area">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="title" placeholder="Digite o título do livro">
+        <mat-error *ngIf="formulary.get('title')?.hasError('required')">
+          O campo Título é <strong>obrigatório</strong>.
+        </mat-error>
+      </mat-form-field>
+
+      <div class="input-row">
+        <mat-form-field appearance="fill" class="input-item">
+          <mat-label>Coleção</mat-label>
+          <input matInput formControlName="collection" placeholder="Ex: Clássicos">
+          <mat-error *ngIf="formulary.get('collection')?.hasError('required')">
+            O campo Coleção é <strong>obrigatório</strong>.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="input-item">
+          <mat-label>Quantidade</mat-label>
+          <input matInput type="number" min="0" formControlName="quantity">
+          <mat-error *ngIf="formulary.get('quantity')?.hasError('required')">
+            Informe a <strong>quantidade</strong>.
+          </mat-error>
+          <mat-error *ngIf="formulary.get('quantity')?.hasError('min')">
+            A quantidade não pode ser negativa.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="input-row">
+        <mat-form-field appearance="fill" class="input-item">
+          <mat-label>Data de Publicação</mat-label>
+          <input matInput [matDatepicker]="pickerPub" formControlName="publicationDate">
+          <mat-datepicker-toggle matSuffix [for]="pickerPub"></mat-datepicker-toggle>
+          <mat-datepicker #pickerPub></mat-datepicker>
+          <mat-error *ngIf="formulary.get('publicationDate')?.hasError('required')">
+            Data de publicação é <strong>obrigatória</strong>.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="input-item">
+          <mat-label>Data de Fabricação</mat-label>
+          <input matInput [matDatepicker]="pickerMfg" formControlName="manufacturingDate">
+          <mat-datepicker-toggle matSuffix [for]="pickerMfg"></mat-datepicker-toggle>
+          <mat-datepicker #pickerMfg></mat-datepicker>
+          <mat-error *ngIf="formulary.get('manufacturingDate')?.hasError('required')">
+            Data de fabricação é <strong>obrigatória</strong>.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="authors-section">
+        <div class="authors-header">
+          <span class="section-label">Autores ({{ authorsFormArray.length }})</span>
+          <button type="button" mat-stroked-button color="primary" (click)="addAuthor()">
+            <mat-icon>person_add</mat-icon> Adicionar Autor
+          </button>
+        </div>
+
+        <div formArrayName="authors" class="authors-list">
+          <div *ngFor="let authorCtrl of authorsFormArray.controls; let i = index" [formGroupName]="i" class="author-row">
+            <mat-form-field appearance="fill" class="author-field">
+              <mat-label>Autor {{ i + 1 }}</mat-label>
+              <mat-select formControlName="id" (selectionChange)="onAuthorSelectionChange(i, $event.value)">
+                <mat-option *ngFor="let author of authorList" [value]="author.id">
+                  {{ author.name }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="authorCtrl.get('id')?.hasError('required')">
+                Selecione um autor
+              </mat-error>
+            </mat-form-field>
+            <button type="button" mat-icon-button color="warn" (click)="removeAuthor(i)" aria-label="Remover Autor">
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </div>
+
+          <div *ngIf="authorsFormArray.length === 0" class="empty-authors">
+            Nenhum autor vinculado. Clique em "Adicionar Autor" para vincular.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="footer-area">
+      <button type="button" mat-button (click)="close()" [disabled]="isSaving">
+        Cancelar
+      </button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="isSaving">
+        <mat-icon>save</mat-icon>
+        {{ isSaving ? 'Salvando...' : 'Salvar Alterações' }}
+      </button>
+    </div>
+  </form>
+</div>
+

@@ -7,6 +7,7 @@ import { BooksService } from 'src/app/services/books.service';
 
 import { AddBookComponent } from '../system-dialogs/add-book/add-book.component';
 import { DeleteBookComponent } from '../system-dialogs/delete-book/delete-book.component';
+import { EditBookComponent } from '../system-dialogs/edit-book/edit-book.component';
 import { Book } from './../../model/books.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -65,17 +66,44 @@ export class BooksComponent implements OnInit {
     this.showData(this.pagina, this.tamanho)
   }
 
-  openDialogDeleteBook(book: Book) {
-    this.dialog.open(DeleteBookComponent, {
-      width: '300px',
+  openDialogEditBook(book: Book, event?: MouseEvent) {
+    event?.stopPropagation();
+    const dialogRef = this.dialog.open(EditBookComponent, {
+      width: '560px',
+      maxHeight: '90vh',
+      hasBackdrop: true,
       data: book,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.showData(this.pagina, this.tamanho);
+      }
+    });
+  }
+
+  openDialogDeleteBook(book: Book, event?: MouseEvent) {
+    event?.stopPropagation();
+    const dialogRef = this.dialog.open(DeleteBookComponent, {
+      width: '300px',
+      hasBackdrop: true,
+      data: book,
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.showData(this.pagina, this.tamanho);
     });
   }
 
   openDialogAddBook() {
-    this.dialog.open(AddBookComponent, {
+    const dialogRef = this.dialog.open(AddBookComponent, {
       width: '485px',
-      height: '800px'
+      height: '800px',
+      hasBackdrop: true
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.showData(this.pagina, this.tamanho);
     });
   }
 }

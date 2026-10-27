@@ -6,7 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthActivateRouteGuard } from './routeguards/auth.routeguard';
-import { EditBookComponent } from './components/edit-book/edit-book.component';
+import { EditBookComponent } from './components/system-dialogs/edit-book/edit-book.component';
 
 
 
