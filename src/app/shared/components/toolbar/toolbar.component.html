@@ -1,0 +1,15 @@
+<mat-toolbar>
+   <span><a routerLink="/home">Biblioteca</a></span>
+   <span class="example-spacer"></span>
+    <mat-button-toggle-group name="navGroup" aria-label="Navegação">
+    <mat-button-toggle value="login" routerLink="/login" routerLinkActive="active" *ngIf="user.authStatus!='AUTH'">
+        Login
+    </mat-button-toggle>
+    <mat-button-toggle value="books" routerLink="/books" routerLinkActive="active" *ngIf="user.authStatus=='AUTH'">
+        Livros
+    </mat-button-toggle>
+    <mat-button-toggle value="logout" routerLink="/logout" routerLinkActive="active" *ngIf="user.authStatus=='AUTH'">
+        Logout
+    </mat-button-toggle>
+</mat-button-toggle-group>
+ </mat-toolbar>
